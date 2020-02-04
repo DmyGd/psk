@@ -54,9 +54,12 @@ if __name__ == '__main__':
 	t = 4
 	#s = "1844. A mast cell is a leukocyte that produces inflammatory molecules, such as histamine, in response to large pathogens.         A basophil is a leukocyte that, like a neutrophil, releases chemicals to stimulate the inflammatory response as illustrated in [link].       Basophils are also involved in allergy and hypersensitivity responses and induce specific types of inflammatory responses. "
 	#s= "1844. A mast cell is a leukocyte that produces inflammatory molecules"
-	s = "that primarily which states that Hello Dog some these are called which states that monitors and causes which states that Hello Dog these are called which states that that primarily"
+	#s = "that primarily which states that Hello Dog some these are called which states that monitors and causes which states that Hello Dog these are called which states that that primarily"
+	s = "a process know are called is also called"
 	analisis1 = TextoAnalizado(s)
 	#print(str(analisis1.linea))
+	#analisis1.nexo.buscarTermino(analisis1.linea,nx)
+	#analisis1.vnd.buscarTermino(analisis1.linea,vNoDef)
 	analisis1.vd.buscarTermino(analisis1.linea,vDef)
 
 

@@ -187,24 +187,30 @@ class Arbol:
 			if h != None:
 				hoja = self.buscarLista(h,palabras[k+1:])
 				if hoja!=None:
-					#print(">>>>>>>> [{}]".format(hoja.palabra))
-					#nodoImprimible = hoja
-					#vervoDefinitorio = []
-					#aqui esta el problema
-
-					#while nodoImprimible.padre != None:
-					#	#vervoDefinitorio.insert(0,str(nodoImprimible.palabra.palabra))
-					#	vervoDefinitorio.insert(0,str(nodoImprimible.palabra))
-					#	nodoImprimible = nodoImprimible.padre
-					#vervoDefinitorio.append(k)
-					#vervoDefinitorio.append(k+len(vervoDefinitorio)-2)
-					#vervosEncontrados.append(vervoDefinitorio)
-					pass
+					palabras[k].tipo = tipo
+					palabras[k].idTipo = hoja.idExpresion
+					#print(">>>>>>>> [{},{}]".format(hoja.palabra,hoja.idExpresion))
+					#print(type(self.expresiones[hoja.idExpresion]))
+					longitud = len(self.expresiones[hoja.idExpresion])
+					print("longitud: {} ".format(longitud))
+					for j in range(longitud):
+						
+						print("cambiando el valor de "+str(palabras[k+j]))
+						print("idExpresion: " + str(hoja.idExpresion))
+						palabras[k+j].tipo = tipo
+						#palabras[k+j].idTipo = hoja.idExpresion
+						palabras[k+j].idTipo = hoja.idExpresion
+						print("valor modificado: {}".format(palabras[k+j].idTipo))
+					
+					
 				else:
 					#vervosEncontrados.append([h.palabra.palabra,k,k])
 					#vervosEncontrados.append([str(h.palabra),k,k])
 					palabras[k].tipo = tipo
-					palabras[k].idTipo = 312132
+					print(">>>>>>>> [{},{}]".format(h.palabra,h.idExpresion))
+					palabras[k].idTipo = h.idExpresion
+
+		#return palabras
 
 		
 
