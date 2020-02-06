@@ -27,9 +27,10 @@ class Texto:
 class TextoAnalizado(Texto):
 
 	def __init__(self, txt):
-		self.vd = Arbol('vd.txt')
-		self.vnd = Arbol('vnd.txt')
-		self.nexo = Arbol('nexo.txt')
+		self.vd = Arbol('vd.txt',)
+		#self.vd = Arbol('vd.txt')
+		self.vnd = Arbol('vnd.txt',)
+		self.nexo = Arbol('nexo.txt',)
 		self.termino = Arbol('terminos.txt',1)
 		#self.vd.imprimeExpresiones()
 
@@ -54,10 +55,21 @@ if __name__ == '__main__':
 	t = 4
 	#s = "1844. A mast cell is a leukocyte that produces inflammatory molecules, such as histamine, in response to large pathogens.         A basophil is a leukocyte that, like a neutrophil, releases chemicals to stimulate the inflammatory response as illustrated in [link].       Basophils are also involved in allergy and hypersensitivity responses and induce specific types of inflammatory responses. "
 	#s= "1844. A mast cell is a leukocyte that produces inflammatory molecules"
-	s = "that primarily which states that Hello Dog some these are called which states that monitors and causes which states that Hello Dog these are called which states that that primarily"
+	s = "monitors and causes that primarily which states that Hello Dog some these are called which states that monitors and causes consists of divides which states that Hello Dog these are called which states that that primarily"
+	#s = "that are Dog a process know are called is also called. Hello which which are in a"
+	#s = "are collectively refered know are Dog"
 	analisis1 = TextoAnalizado(s)
 	#print(str(analisis1.linea))
+	#analisis1.nexo.buscarTermino(analisis1.linea,nx)
+	#analisis1.vnd.buscarTermino(analisis1.linea,vNoDef)
+	analisis1.vd.imprimeExpresiones()
+
 	analisis1.vd.buscarTermino(analisis1.linea,vDef)
+	analisis1.vnd.imprimeExpresiones()
+	analisis1.vnd.buscarTermino(analisis1.linea,vNoDef)
+	analisis1.nexo.imprimeExpresiones()
+	analisis1.nexo.buscarTermino(analisis1.linea,nx)
+	#analisis1.nexo.buscarTermino(analisis1.linea,t)
 
 
 	print(analisis1)
