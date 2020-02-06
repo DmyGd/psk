@@ -15,7 +15,7 @@ class TipoNodo(Enum):
 	Lemma = 1
 	POS = 2
 	Palabra = 3
-	Termino = 4
+
 
 class Nodo:
 	def __init__(self,palabra):
@@ -77,6 +77,8 @@ class NodoPOS(Nodo):
 	def comparaConNodo(self,hoja,palabra):
 		return hoja.palabra.pos==palabra.pos
 
+		#print("comp (palabra: {}) {} == {}".format(palabra.palabra,str(hoja.palabra),str(palabra.pos)))
+		#return str(hoja.palabra.palabra)==str(palabra.pos)
 
 class NodoPalabra(Nodo):
 	def crearNodo(self,palabra):
@@ -102,7 +104,9 @@ class Arbol:
 		if len(nombre) > 0:
 			if tipoArbol == 0:
 				self.cargaArchivo(nombre)
+
 			else:
+				print("estoy en el else")
 				self.cargaArchivoTerminos(nombre)
 
 
@@ -152,7 +156,10 @@ class Arbol:
 # regresa la hoja donde encontró la palabra o None si no la encontró
 	def buscarHoja(self,raiz,palabra):
 		for hoja in raiz.hojas:
-			if hoja.palabra.pos == palabra.pos:
+			#print("comparando: ")
+			#print("{} == {}".format(str(hoja.palabra),str(palabra)))
+			if hoja.comparaConNodo(hoja,palabra):
+				print("*"*50)
 				return hoja
 		return None
 
@@ -179,32 +186,34 @@ class Arbol:
 		return self.buscarLista(hoja,palabras[1:])
 
 	def buscarTermino(self,palabras,tipo):
-		#vervosEncontrados = []
 		for k in range(len(palabras)):
 			#print(palabras[k])
 			h = self.buscarHoja(self.raiz,palabras[k])
-
 			if h != None:
 				hoja = self.buscarLista(h,palabras[k+1:])
 				if hoja!=None:
-					#print(">>>>>>>> [{}]".format(hoja.palabra))
-					#nodoImprimible = hoja
-					#vervoDefinitorio = []
-					#aqui esta el problema
+					#print(">>>>>>>> [{},{}]".format(hoja.palabra,hoja.idExpresion))
+					#print(type(self.expresiones[hoja.idExpresion]))
 
-					#while nodoImprimible.padre != None:
-					#	#vervoDefinitorio.insert(0,str(nodoImprimible.palabra.palabra))
-					#	vervoDefinitorio.insert(0,str(nodoImprimible.palabra))
-					#	nodoImprimible = nodoImprimible.padre
-					#vervoDefinitorio.append(k)
-					#vervoDefinitorio.append(k+len(vervoDefinitorio)-2)
-					#vervosEncontrados.append(vervoDefinitorio)
-					pass
+					if palabras[k].tipo == 0:
+						for j in range(len(self.expresiones[hoja.idExpresion])):
+							#print("cambiando el valor de "+str(palabras[k+j]))
+							#print("idExpresion: " + str(hoja.idExpresion))
+							palabras[k+j].tipo = tipo
+							#palabras[k+j].idTipo = hoja.idExpresion
+							palabras[k+j].idTipo = hoja.idExpresion
+							#print("valor modificado: {}".format(palabras[k+j].idTipo))
 				else:
-					#vervosEncontrados.append([h.palabra.palabra,k,k])
-					#vervosEncontrados.append([str(h.palabra),k,k])
-					palabras[k].tipo = tipo
-					palabras[k].idTipo = 312132
+					#print(">>>>>>>> [palabra simple {},{}]".format(str(h.palabra),str(h.idExpresion)))
+					if palabras[k].tipo == 0 and h.idExpresion != -1:
+						palabras[k].tipo = tipo
+						#print(">>>>>>>> [{},{}]".format(hoja.palabra,hoja.idExpresion))
+						#print("valor simple:{} expresion:{}".format(palabras[k].palabra,h.idExpresion))
+						palabras[k].idTipo = h.idExpresion
+					else: 
+						pass
+
+		#return palabras
 
 		
 
